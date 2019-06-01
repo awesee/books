@@ -35,7 +35,7 @@ func readDir(dirname string, level int, buf *bytes.Buffer) {
 			}
 			buf.WriteString(fmt.Sprintf("[%s](%s)\n",
 				prettyName(fi.Name()),
-				path.Join(basePath, url.PathEscape(dirname), url.PathEscape(fi.Name())),
+				path.Join(url.PathEscape(dirname), url.PathEscape(fi.Name())),
 			))
 			if fi.IsDir() {
 				readDir(path.Join(dirname, fi.Name()), level+1, buf)
@@ -69,8 +69,6 @@ func checkErr(err error) {
 }
 
 const root = 0
-
-const basePath = "https://raw.githubusercontent.com/openset/books/master"
 
 const footer = `
 ## &copy;2018 Shuo. All rights reserved.
