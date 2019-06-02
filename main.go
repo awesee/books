@@ -7,6 +7,7 @@ import (
 	"log"
 	"net/url"
 	"path"
+	"sort"
 	"strings"
 )
 
@@ -23,6 +24,12 @@ func main() {
 func readDir(dirname string, level int, buf *bytes.Buffer) {
 	fileList, err := ioutil.ReadDir(dirname)
 	checkErr(err)
+	sort.Slice(fileList, func(i, j int) bool {
+		if fileList[i].IsDir() == fileList[j].IsDir() {
+			return fileList[i].Name() < fileList[j].Name()
+		}
+		return fileList[j].IsDir()
+	})
 	for _, fi := range fileList {
 		if validName(fi.Name()) {
 			if level == root {
