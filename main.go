@@ -20,9 +20,9 @@ func main() {
 }
 
 func readDir(dirname string, level int, buf *bytes.Buffer) {
-	fileLis, err := ioutil.ReadDir(dirname)
+	fileList, err := ioutil.ReadDir(dirname)
 	checkErr(err)
-	for _, fi := range fileLis {
+	for _, fi := range fileList {
 		if validName(fi.Name()) {
 			if level == root {
 				buf.WriteString("\n")
@@ -34,8 +34,8 @@ func readDir(dirname string, level int, buf *bytes.Buffer) {
 				buf.WriteString("- ")
 			}
 			buf.WriteString(fmt.Sprintf("[%s](%s)\n",
-				prettyName(fi.Name()),
-				path.Join(url.PathEscape(dirname), url.PathEscape(fi.Name())),
+				fi.Name(),
+				url.PathEscape(path.Join(dirname, fi.Name())),
 			))
 			if fi.IsDir() {
 				readDir(path.Join(dirname, fi.Name()), level+1, buf)
@@ -53,13 +53,6 @@ func validName(name string) bool {
 		strings.HasPrefix(name, ".") ||
 		strings.HasSuffix(name, ".md") ||
 		strings.HasSuffix(name, ".go"))
-}
-
-func prettyName(name string) string {
-	name = strings.ReplaceAll(name, "+", " ")
-	name = strings.ReplaceAll(name, "-", " ")
-	name = strings.Title(name)
-	return name
 }
 
 func checkErr(err error) {
