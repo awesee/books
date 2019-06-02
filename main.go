@@ -26,7 +26,7 @@ func readDir(dirname string, level int, buf *bytes.Buffer) {
 	checkErr(err)
 	sort.Slice(fileList, func(i, j int) bool {
 		if fileList[i].IsDir() == fileList[j].IsDir() {
-			return fileList[i].Name() < fileList[j].Name()
+			return strings.ToLower(fileList[i].Name()) < strings.ToLower(fileList[j].Name())
 		}
 		return fileList[j].IsDir()
 	})
