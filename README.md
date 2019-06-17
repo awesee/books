@@ -106,6 +106,7 @@
   - [Nginx教程.pdf](Nginx%2FNginx%E6%95%99%E7%A8%8B.pdf)
 
 ## [Other](Other)
+  - [Scalability.pdf](Other%2FScalability.pdf)
   - [码农·码农的面试（第8期）.pdf](Other%2F%E7%A0%81%E5%86%9C%C2%B7%E7%A0%81%E5%86%9C%E7%9A%84%E9%9D%A2%E8%AF%95%EF%BC%88%E7%AC%AC8%E6%9C%9F%EF%BC%89.pdf)
 
 ## [PHP](PHP)
