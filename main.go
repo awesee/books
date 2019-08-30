@@ -54,10 +54,12 @@ func readDir(dirname string, level int, buf *bytes.Buffer) {
 
 func validName(name string) bool {
 	name = strings.ToLower(name)
-	exclude := map[string]bool{
+	excludeFile := map[string]bool{
 		"license": true,
+		"go.mod":  true,
+		"go.sum":  true,
 	}
-	return !(exclude[name] ||
+	return !(excludeFile[name] ||
 		strings.HasPrefix(name, ".") ||
 		strings.HasSuffix(name, ".md") ||
 		strings.HasSuffix(name, ".go"))
